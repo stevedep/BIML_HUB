@@ -43,6 +43,7 @@
             this.btnGenerateOrch.TabIndex = 0;
             this.btnGenerateOrch.Text = "Generate Orchestration";
             this.btnGenerateOrch.UseVisualStyleBackColor = true;
+            this.btnGenerateOrch.Click += new System.EventHandler(this.btnGenerateOrch_Click_1);
             // 
             // btnLoadExtractTables
             // 

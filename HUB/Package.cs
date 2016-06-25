@@ -18,14 +18,15 @@ namespace HUB
         public string biml_executepackage { get; set; }
         public string biml_connection { get; set; }
         public string biml_executearchive { get; set; }
-        
+                
         public string PackageName { get { return PackageNameVar; } set { 
             // single package
             biml = biml.Replace(PackageNameVar, value).ToString();
             // for the orchestration package
             biml_executepackage = biml_executepackage.Replace(PackageNameVar, value).ToString();
            // biml_executearchive = biml_executearchive.Replace(PackageNameVar, value).ToString();
-            biml_connection = biml_connection.Replace(PackageNameVar, value).ToString();            
+            biml_connection = biml_connection.Replace(PackageNameVar, value).ToString();
+            biml_executearchive = biml_executearchive.Replace(PackageNameVar, value).ToString();            
             PackageNameVar = value; } }
         public string SequenceName { get; set; }
         
@@ -42,11 +43,13 @@ namespace HUB
         public string ExtractTableName { get { return ExtractTableNameVar; } set { biml = biml.Replace(ExtractTableNameVar, value); ExtractTableNameVar = value; } }
 
         public string SourceTableNameVar { get; set; }
-        public string SourceTableName { get { return SourceTableNameVar; } set { biml = biml.Replace(SourceTableNameVar, value); SourceTableNameVar = value; } }
+        public string SourceTableName { get { return SourceTableNameVar; } set {
+            biml = biml.Replace(SourceTableNameVar, value); biml_executearchive = biml_executearchive.Replace(SourceTableNameVar, value);
+            SourceTableNameVar = value; } }
 
-        //public string ArchiveProcedureVar { get; set; }
-        //public string ArchiveProcedure { get { return ArchiveProcedureVar; } set { biml = biml.Replace(ArchiveProcedureVar, value); ArchiveProcedureVar = value; } }
-        public string ArchiveProcedure { get; set; }
+        public string ArchiveProcedureVar { get; set; }
+        public string ArchiveProcedure { get { return ArchiveProcedureVar; } set { biml_executearchive = biml_executearchive.Replace(ArchiveProcedureVar, value).ToString(); ArchiveProcedureVar = value; } }          
+        
 
         public string SequenceContainerName { get; set; }
         
@@ -89,6 +92,7 @@ namespace HUB
             SourceTableNameVar = "<!--SourceTableName-->";
             SourceSystemNameVar = "<!--SourceSystem-->";
             ExtractTableNameVar = "<!--ExtractTableName-->";
+            ArchiveProcedureVar = "<!--ArchiveProcedure-->";
 
 
             //Single packages
@@ -97,6 +101,7 @@ namespace HUB
             //Orchestration
             biml_executepackage = System.IO.File.ReadAllText(@"c:\TFS\Entrino Business Intelligence\Back-End\SSIS\Hub\Hub\Hub\ExcecutePackage.biml");
             biml_connection = System.IO.File.ReadAllText(@"c:\TFS\Entrino Business Intelligence\Back-End\SSIS\Hub\Hub\Hub\Connection.biml");
+            biml_executearchive = System.IO.File.ReadAllText(@"c:\TFS\Entrino Business Intelligence\Back-End\SSIS\Hub\Hub\Hub\ArchiveProcedure.biml");
         }
 
     }
