@@ -13,7 +13,7 @@ namespace HUB
     public partial class Form1 : Form
     {
 
-        public static string metadataConnectionString = "Server=10.1.7.101;Database=STGEDW;User Id=STG_BI_User01; Password=4Februari;";
+        public static string metadataConnectionString = "Server=10.1.7.101;Database=STGEDW;User Id=lala; Password=lala;";
         public List<ExtractTable> extractTables = new List<ExtractTable>();
         public List<SequenceContainer> Containers = new List<SequenceContainer>();
 
